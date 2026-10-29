@@ -1,0 +1,134 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "An explicit threshold for the superdiffusion induction"
+  description: >-
+    A Lean 4 formalization of the renormalization induction of Armstrong,
+    Bou-Rabee and Kuusi for diffusion in self-similar random incompressible
+    flows, with an explicit threshold on the self-similarity exponent: for the
+    planar q x q Gaussian model and every gamma <= 17/50000, at every scale the
+    effective diffusivity stays in the corridor nu <= sigma_m,
+    (31/50) B_m + (19/50) nu^2 <= sigma_m^2 <= nu^2 + (13/8) B_m, and the
+    homogenization error satisfies an explicit two-term Gamma_2 / Gamma_{1/2}
+    tail bound and explicit L^p moment bounds for every real p >= 1. These
+    imply the paper's induction hypothesis (Definition 3.2) with E = 2^16.
+    The proof is an induction over scales on a box of numerical caps, with
+    kernel-checked numerical certificates for its thin margins. Built on
+    Mathlib and the Superdiffusion formalization of the paper, using only
+    Lean's standard axioms.
+  authors:
+    - "Scott Armstrong"
+    - "Ahmed Bou-Rabee"
+    - "Tuomo Kuusi"
+  responsible_maintainers:
+    - "Scott Armstrong"
+    - "Ahmed Bou-Rabee"
+    - "Tuomo Kuusi"
+  license: "Apache-2.0"
+  funding:
+    - "Scott Armstrong and Tuomo Kuusi were supported by the European Research Council (ERC) under the European Union's Horizon Europe research and innovation programme, grant agreement No. 101200828."
+
+classification:
+  arxiv: ["math.PR", "math.AP"]
+  msc2020: ["60K37", "35B27", "60H25", "82C41"]
+
+sources:
+  - title: "Superdiffusion and anomalous regularization in self-similar random incompressible flows"
+    authors:
+      - "Scott Armstrong"
+      - "Ahmed Bou-Rabee"
+      - "Tuomo Kuusi"
+    type: "paper"
+    relationship: "background"
+    note: >-
+      The model, the effective diffusivities, the homogenization errors and
+      the induction hypothesis are those of this paper (arXiv:2601.22142v2), as
+      formalized in Superdiffusion. The explicit threshold proved here is not
+      in the paper, whose induction holds for an unspecified small gamma; the
+      proof differs from the paper's (docs/CHANGES-FROM-THE-PAPER.md), and it
+      does not make explicit the thresholds of the paper's main theorems.
+    author_endorsement: "participated"
+
+related_formalizations:
+  - id: "https://github.com/scottnarmstrong/Superdiffusion"
+    relationship: "builds-on"
+    note: >-
+      Supplies the model (ABKModel), the effective diffusivity, the
+      homogenization error, the Orlicz tail vocabulary and the induction
+      hypothesis used in the statements; pinned as an unmodified Lake
+      dependency, with its own pinned dependencies CoarseGraining,
+      MarkovProcess and Mathlib.
+  - id: "https://github.com/scottnarmstrong/CoarseGraining"
+    relationship: "builds-on"
+    note: >-
+      The coarse-graining library of Armstrong and Kuusi; a dependency of
+      Superdiffusion.
+
+status:
+  scope: >-
+    Formalized and proved: ASDExplicitGamma.explicit_induction_bounds (the
+    corridor, the two-term tail bound and the L^p moment bounds at every
+    scale, for gamma <= 17/50000) and ASDExplicitGamma.inductionState_of_explicit
+    (the paper's induction hypothesis with E = 2^16), for every model of
+    ABKModel 2 satisfying PlanarQ3Gaussian, together with the intermediate
+    theorems molecular_entrance, induction_step and allorder_of_state. The
+    construction of a model satisfying the hypothesis is not formalized, and
+    the thresholds of the paper's Theorems A, B and C are not made explicit.
+  sorry_count: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+
+automation:
+  methods:
+    - method: "agent"
+      models:
+        - "claude-opus-5-5"
+        - "claude-sonnet-5-5"
+        - "gpt-6.1-sol"
+        - "gpt-6-luna"
+        - "gpt-6-astra"
+      framework: >-
+        Claude Code (Anthropic) and Codex (OpenAI). Claude Opus 5.5
+        coordinated the work: it wrote the proof outline from the research
+        notes of the explicit proof, planned bounded proof tasks, assigned them
+        to parallel agents, and carried out statement and proof audits. The
+        Lean code was written by GPT-6.1 Sol, GPT-6 Luna and GPT-6 Astra running
+        in Codex, and by Claude Opus 5.5 and Claude Sonnet 5.5 subagents in
+        Claude Code.
+      tool_setup: >-
+        Lake builds with Lean and Mathlib v4.35.0-rc2 and Superdiffusion at a
+        pinned revision. The main statements were approved by Scott Armstrong
+        before their proofs; each completed proof of a main statement received a
+        separate audit.
+      hardware: "one 16-CPU Linux machine"
+  notes: >-
+    Lean code was written with the listed AI models under the authors'
+    supervision. The Lean kernel checks the formal proofs, including the
+    numerical certificates; the library contains no sorry and no custom axiom.
+
+review:
+  status: "author-approved-statements"
+  reviewers:
+    - "Scott Armstrong"
+  notes: >-
+    Scott Armstrong approved the main statements. Separate agent reviews checked
+    the statements against the paper and the explicit proof, and audited the
+    proofs of the main statements. This is not external peer review.
+
+alignment:
+  namespace: "ASDExplicitGamma"
+  statements:
+    - source: "Explicit induction bounds for gamma <= 17/50000 (corridor, two-term tail bound, L^p moments)"
+      lean: "ASDExplicitGamma.explicit_induction_bounds"
+      module: "ASDExplicitGamma.Statements.ExplicitInductionBounds"
+      status: "proved"
+    - source: "Definition 3.2 (induction hypothesis) with E = 2^16, at every scale"
+      lean: "ASDExplicitGamma.inductionState_of_explicit"
+      module: "ASDExplicitGamma.Statements.InductionStateOfExplicit"
+      status: "proved"
+
+acknowledgements: >-
+  Built on Lean 4, Mathlib, Lake, and the CoarseGraining, MarkovProcess and
+  Superdiffusion libraries. Scott Armstrong and Tuomo Kuusi were supported by
+  the European Research Council (ERC) under the European Union's Horizon
+  Europe research and innovation programme, grant agreement No. 101200828.

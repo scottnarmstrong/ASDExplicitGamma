@@ -1,0 +1,144 @@
+name: Build and verify
+
+"on":
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+# The library needs about 13 CPU-hours to compile on a fast machine, too close to what one 6-hour job of a 4-core hosted
+# runner can do. It is built in STAGES stages: stages 1-3 have JOBS parallel jobs each, planned by scripts/ci_plan.py
+# from the import graph, and each job starts from the outputs of all earlier stages (passed as artifacts). The final job
+# builds the rest of the library with `lake build`, which also checks that every module is current, and runs the checks.
+# Mathlib comes from its cache; CoarseGraining, MarkovProcess and Superdiffusion come prebuilt from this repository's
+# `dependency-oleans` release (see dependency-oleans.yml), so no job compiles them.
+env:
+  STAGES: "4"
+  JOBS: "8"
+
+jobs:
+  stage1:
+    name: Stage 1 (job ${{ matrix.job }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    strategy:
+      fail-fast: true
+      matrix:
+        job: [0, 1, 2, 3, 4, 5, 6, 7]
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - name: Build
+        run: bash scripts/ci_stage.sh 1 ${{ matrix.job }} "$STAGES" "$JOBS"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage1-${{ matrix.job }}
+          path: stage-out.tar.zst
+          compression-level: 0
+          retention-days: 2
+
+  stage2:
+    name: Stage 2 (job ${{ matrix.job }})
+    needs: stage1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    strategy:
+      fail-fast: true
+      matrix:
+        job: [0, 1, 2, 3, 4, 5, 6, 7]
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: stage1-*
+          path: stage-in
+      - name: Build
+        run: bash scripts/ci_stage.sh 2 ${{ matrix.job }} "$STAGES" "$JOBS"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage2-${{ matrix.job }}
+          path: stage-out.tar.zst
+          compression-level: 0
+          retention-days: 2
+
+  stage3:
+    name: Stage 3 (job ${{ matrix.job }})
+    needs: stage2
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    strategy:
+      fail-fast: true
+      matrix:
+        job: [0, 1, 2, 3, 4, 5, 6, 7]
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: stage[12]-*
+          path: stage-in
+      - name: Build
+        run: bash scripts/ci_stage.sh 3 ${{ matrix.job }} "$STAGES" "$JOBS"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage3-${{ matrix.job }}
+          path: stage-out.tar.zst
+          compression-level: 0
+          retention-days: 2
+
+  final:
+    name: Build the rest, check, audit axioms
+    needs: stage3
+    runs-on: ubuntu-24.04
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: stage[123]-*
+          path: stage-in
+      - name: Unpack the earlier stages
+        run: |
+          set -Eeuo pipefail
+          find stage-in -name '*.tar.zst' | sort | while read -r f; do zstd -dc "$f" | tar -x; done
+          rm -rf stage-in
+          df -h .
+
+      # Builds every module not built by the earlier stages and replays the logs of the others. The library must build
+      # without `sorry`; other warnings (linters) are reported but do not fail the step.
+      - name: Build the library
+        run: |
+          set -o pipefail
+          lake build 2>&1 | tee library-build.log
+          if grep -E "declaration uses .sorry." library-build.log; then
+            echo "::error::The library build reported a sorry."
+            exit 1
+          fi
+          find .lake/build -name '*.setup.json' -delete
+
+      - name: Every Lean file is a module, and none is over 10,000 lines
+        run: python3 scripts/check_lean_modules.py
+
+      - name: Axiom audit
+        run: |
+          set -o pipefail
+          lake build ASDExplicitGammaAudit 2>&1 | tee axioms-audit.log
+          python3 scripts/check_axioms.py axioms-audit.log ASDExplicitGammaAudit/Axioms.lean

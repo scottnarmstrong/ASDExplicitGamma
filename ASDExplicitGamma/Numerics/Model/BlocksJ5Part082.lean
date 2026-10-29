@@ -1,0 +1,95 @@
+module
+public import ASDExplicitGamma.Numerics.Model.BlockCertificate
+public import ASDExplicitGamma.Numerics.Model.ModesJ5Part023
+public import ASDExplicitGamma.Numerics.Model.ModesJ5Part024
+public import ASDExplicitGamma.Numerics.Model.ModesJ5Part025
+public import ASDExplicitGamma.Numerics.Model.ModesJ5Part026
+
+@[expose] public section
+namespace ASDExplicitGamma.Numerics.Model
+def bflatBlockJ5B82 : ModeBlockData :=
+  ⟨⟨383, 422, (225253725188922758133/5000000000000000000000 : ℚ), (966802560124505963/10000000000000000000000 : ℚ)⟩, [
+    (383, modeDataJ5M384),
+    (384, modeDataJ5M385),
+    (385, modeDataJ5M386),
+    (386, modeDataJ5M387),
+    (387, modeDataJ5M388),
+    (388, modeDataJ5M389),
+    (389, modeDataJ5M390),
+    (390, modeDataJ5M391),
+    (391, modeDataJ5M392),
+    (392, modeDataJ5M393),
+    (393, modeDataJ5M394),
+    (394, modeDataJ5M395),
+    (395, modeDataJ5M396),
+    (396, modeDataJ5M397),
+    (397, modeDataJ5M398),
+    (398, modeDataJ5M399),
+    (399, modeDataJ5M400),
+    (400, modeDataJ5M401),
+    (401, modeDataJ5M402),
+    (402, modeDataJ5M403),
+    (403, modeDataJ5M404),
+    (404, modeDataJ5M405),
+    (405, modeDataJ5M406),
+    (406, modeDataJ5M407),
+    (407, modeDataJ5M408),
+    (408, modeDataJ5M409),
+    (409, modeDataJ5M410),
+    (410, modeDataJ5M411),
+    (411, modeDataJ5M412),
+    (412, modeDataJ5M413),
+    (413, modeDataJ5M414),
+    (414, modeDataJ5M415),
+    (415, modeDataJ5M416),
+    (416, modeDataJ5M417),
+    (417, modeDataJ5M418),
+    (418, modeDataJ5M419),
+    (419, modeDataJ5M420),
+    (420, modeDataJ5M421),
+    (421, modeDataJ5M422)], (450507450377845516227/10000000000000000000000 : ℚ)⟩
+
+theorem block_entries_checked_j5_b82 : entryChecks 5 bflatBlockJ5B82.entries = true := by
+  simp only [entryChecks,bflatBlockJ5B82,List.all_cons,List.all_nil,
+    mode_checked_j5_m384,
+    mode_checked_j5_m385,
+    mode_checked_j5_m386,
+    mode_checked_j5_m387,
+    mode_checked_j5_m388,
+    mode_checked_j5_m389,
+    mode_checked_j5_m390,
+    mode_checked_j5_m391,
+    mode_checked_j5_m392,
+    mode_checked_j5_m393,
+    mode_checked_j5_m394,
+    mode_checked_j5_m395,
+    mode_checked_j5_m396,
+    mode_checked_j5_m397,
+    mode_checked_j5_m398,
+    mode_checked_j5_m399,
+    mode_checked_j5_m400,
+    mode_checked_j5_m401,
+    mode_checked_j5_m402,
+    mode_checked_j5_m403,
+    mode_checked_j5_m404,
+    mode_checked_j5_m405,
+    mode_checked_j5_m406,
+    mode_checked_j5_m407,
+    mode_checked_j5_m408,
+    mode_checked_j5_m409,
+    mode_checked_j5_m410,
+    mode_checked_j5_m411,
+    mode_checked_j5_m412,
+    mode_checked_j5_m413,
+    mode_checked_j5_m414,
+    mode_checked_j5_m415,
+    mode_checked_j5_m416,
+    mode_checked_j5_m417,
+    mode_checked_j5_m418,
+    mode_checked_j5_m419,
+    mode_checked_j5_m420,
+    mode_checked_j5_m421,
+    mode_checked_j5_m422,Bool.and_self]
+theorem block_mass_checked_j5_b82 : blockMassCheck bflatBlockJ5B82 = true := by
+  decide +kernel
+end ASDExplicitGamma.Numerics.Model

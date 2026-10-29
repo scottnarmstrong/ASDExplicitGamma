@@ -1,0 +1,45 @@
+module
+
+public import ASDExplicitGamma.Numerics.Inverse.Basic
+
+/-! Generated data (exact rationals), checked by kernel reduction. -/
+@[expose] public section
+namespace ASDExplicitGamma.Numerics.Inverse
+
+def invInverseTau : ℚ := 10000000000
+
+def invInverseQ : ℚ := (18973823077476801889881231878385983129011145949877845022904506398651 / 250000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 : ℚ)
+
+def invInverseQraw : ℚ := 364*3^80*(3*(61/10)/invInverseTau)^12
+
+theorem invInverse_density :
+    invInverseQraw ≤ invInverseQ ∧ invInverseQ < invInverseQraw+1/10^150 ∧ invInverseQ < 1/10^10 := by
+  decide +kernel
+
+theorem invInverse_floor :
+    (Nat.factorial 200 : ℚ) < 6000^200*invInverseQ := by
+  decide +kernel
+
+theorem invInverse_cutoff :
+    (2718/1000 : ℚ)^149 ≤ 200/(26*invInverseQ) ∧ 200/(26*invInverseQ) < (2718/1000 : ℚ)^150 := by
+  decide +kernel
+
+def invInverseM2 : ℚ := (2812167239782069238504967020391221717500128974669245044379745606863260663 / 3906250000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 : ℚ)
+
+theorem invInverseM2_formula :
+    invInverseM2 = 26*invInverseQ*((1 : ℚ)*4^0*600^2 + (2 : ℚ)*4^1*600^1 + (2 : ℚ)*4^2*600^0) := by
+  decide +kernel
+
+def invInverseM4 : ℚ := (16033608886562018853897391587846735103520757936528648904946892187956232813239 / 61035156250000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 : ℚ)
+
+theorem invInverseM4_formula :
+    invInverseM4 = 26*invInverseQ*((1 : ℚ)*4^0*600^4 + (4 : ℚ)*4^1*600^3 + (12 : ℚ)*4^2*600^2 + (24 : ℚ)*4^3*600^1 + (24 : ℚ)*4^4*600^0) := by
+  decide +kernel
+
+def invInverseM8 : ℚ := (104299312681157393291178916517773236462265637040864031049582860659008468911760171769 / 2980232238769531250000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 : ℚ)
+
+theorem invInverseM8_formula :
+    invInverseM8 = 26*invInverseQ*((1 : ℚ)*4^0*600^8 + (8 : ℚ)*4^1*600^7 + (56 : ℚ)*4^2*600^6 + (336 : ℚ)*4^3*600^5 + (1680 : ℚ)*4^4*600^4 + (6720 : ℚ)*4^5*600^3 + (20160 : ℚ)*4^6*600^2 + (40320 : ℚ)*4^7*600^1 + (40320 : ℚ)*4^8*600^0) := by
+  decide +kernel
+
+end ASDExplicitGamma.Numerics.Inverse

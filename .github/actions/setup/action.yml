@@ -1,0 +1,66 @@
+name: Set up Lean and the prebuilt dependencies
+description: >-
+  Frees runner disk, adds swap, installs the Lean toolchain, downloads the Mathlib cache, and unpacks the prebuilt
+  build outputs of CoarseGraining, MarkovProcess and Superdiffusion from this repository's `dependency-oleans` release.
+  The last step checks with `lake build --no-build` that the unpacked outputs are current for the pinned sources; it
+  fails instead of compiling the dependencies.
+
+runs:
+  using: composite
+  steps:
+    - name: Free runner disk space
+      shell: bash
+      run: |
+        set -Eeuo pipefail
+        if [[ "${RUNNER_ENVIRONMENT:-}" == github-hosted ]]; then
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/local/.ghcup \
+                      /opt/hostedtoolcache/CodeQL /usr/local/share/powershell /usr/share/swift \
+                      /usr/local/share/boost || true
+          sudo docker image prune --all --force > /dev/null || true
+        fi
+        df -h .
+        available_kib="$(df -Pk . | awk 'NR==2 {print $4}')"
+        test "$available_kib" -ge 20971520
+
+    # Backstop only: a few certificate modules need 4-5.5 GiB each, and Lake compiles up to four modules at once.
+    - name: Add swap and raise the memory-map limit
+      shell: bash
+      run: |
+        set -Eeuo pipefail
+        sudo swapoff -a || true
+        swapdir=/mnt
+        [ -d "$swapdir" ] || swapdir="${RUNNER_TEMP:-/tmp}"
+        sudo rm -f "$swapdir/lean-swapfile"
+        sudo fallocate -l 16G "$swapdir/lean-swapfile"
+        sudo chmod 600 "$swapdir/lean-swapfile"
+        sudo mkswap "$swapdir/lean-swapfile" > /dev/null
+        sudo swapon "$swapdir/lean-swapfile"
+        sudo sysctl -w vm.max_map_count=1048576
+        free -h
+
+    - name: Set up Lean and fetch the Mathlib cache
+      uses: leanprover/lean-action@v1
+      with:
+        build: false
+        use-mathlib-cache: true
+
+    - name: Fetch the prebuilt dependency outputs
+      shell: bash
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        set -Eeuo pipefail
+        key="$(python3 scripts/deps_key.py)"
+        echo "dependency archive: deps-$key.tar.zst"
+        gh release download dependency-oleans --repo "$GITHUB_REPOSITORY" \
+          --pattern "deps-$key.tar.zst" --pattern "deps-$key.tar.zst.sha256" --dir "$RUNNER_TEMP" || {
+          echo "::error::No dependency archive deps-$key.tar.zst in the dependency-oleans release." \
+               "Run the 'Dependency oleans' workflow once for this lake-manifest.json and lean-toolchain."
+          exit 1; }
+        (cd "$RUNNER_TEMP" && sha256sum -c "deps-$key.tar.zst.sha256")
+        zstd -dc "$RUNNER_TEMP/deps-$key.tar.zst" | tar -x
+        rm -f "$RUNNER_TEMP/deps-$key.tar.zst"
+
+    - name: Check that the dependency outputs are current
+      shell: bash
+      run: lake build --no-build @CoarseGraining @MarkovProcess @superdiffusion_formalization

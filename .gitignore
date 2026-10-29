@@ -1,0 +1,5 @@
+.lake/
+stage-in/
+stage-out.tar.zst
+.stage-marker
+*.log

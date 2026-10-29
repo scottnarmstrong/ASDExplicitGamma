@@ -1,0 +1,71 @@
+module
+public import ASDExplicitGamma.Numerics.Native.PanelEndpoint
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001000
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001016
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001032
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001048
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001064
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001080
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001096
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001112
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001128
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001144
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001160
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001176
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001192
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001208
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001224
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001240
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001256
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001272
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001288
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001304
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001320
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001336
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001352
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001368
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001384
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001400
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001416
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001432
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001448
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001464
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001480
+public import ASDExplicitGamma.Numerics.Native.PanelsQ1001496
+/-! Complete OLD boundary-fixed endpoint certificate: all 512 panels, no patch or minimum. -/
+@[expose] public section
+namespace ASDExplicitGamma.Numerics.Native
+open ASDExplicitGamma.Numerics
+
+def nativeEndpointQ1001Caps : List ℚ := nativePanelsQ1001000Caps ++ nativePanelsQ1001016Caps ++ nativePanelsQ1001032Caps ++ nativePanelsQ1001048Caps ++ nativePanelsQ1001064Caps ++ nativePanelsQ1001080Caps ++ nativePanelsQ1001096Caps ++ nativePanelsQ1001112Caps ++ nativePanelsQ1001128Caps ++ nativePanelsQ1001144Caps ++ nativePanelsQ1001160Caps ++ nativePanelsQ1001176Caps ++ nativePanelsQ1001192Caps ++ nativePanelsQ1001208Caps ++ nativePanelsQ1001224Caps ++ nativePanelsQ1001240Caps ++ nativePanelsQ1001256Caps ++ nativePanelsQ1001272Caps ++ nativePanelsQ1001288Caps ++ nativePanelsQ1001304Caps ++ nativePanelsQ1001320Caps ++ nativePanelsQ1001336Caps ++ nativePanelsQ1001352Caps ++ nativePanelsQ1001368Caps ++ nativePanelsQ1001384Caps ++ nativePanelsQ1001400Caps ++ nativePanelsQ1001416Caps ++ nativePanelsQ1001432Caps ++ nativePanelsQ1001448Caps ++ nativePanelsQ1001464Caps ++ nativePanelsQ1001480Caps ++ nativePanelsQ1001496Caps
+
+theorem nativeEndpointQ1001Caps_length : nativeEndpointQ1001Caps.length = 512 := by
+  norm_num only [nativeEndpointQ1001Caps,List.length_append,nativePanelsQ1001000Caps_length,nativePanelsQ1001016Caps_length,nativePanelsQ1001032Caps_length,nativePanelsQ1001048Caps_length,nativePanelsQ1001064Caps_length,nativePanelsQ1001080Caps_length,nativePanelsQ1001096Caps_length,nativePanelsQ1001112Caps_length,nativePanelsQ1001128Caps_length,nativePanelsQ1001144Caps_length,nativePanelsQ1001160Caps_length,nativePanelsQ1001176Caps_length,nativePanelsQ1001192Caps_length,nativePanelsQ1001208Caps_length,nativePanelsQ1001224Caps_length,nativePanelsQ1001240Caps_length,nativePanelsQ1001256Caps_length,nativePanelsQ1001272Caps_length,nativePanelsQ1001288Caps_length,nativePanelsQ1001304Caps_length,nativePanelsQ1001320Caps_length,nativePanelsQ1001336Caps_length,nativePanelsQ1001352Caps_length,nativePanelsQ1001368Caps_length,nativePanelsQ1001384Caps_length,nativePanelsQ1001400Caps_length,nativePanelsQ1001416Caps_length,nativePanelsQ1001432Caps_length,nativePanelsQ1001448Caps_length,nativePanelsQ1001464Caps_length,nativePanelsQ1001480Caps_length,nativePanelsQ1001496Caps_length]
+
+theorem nativeEndpointQ1001_checked : nativePanelChecks nativeSetupQ1001FieldsI 0 nativeEndpointQ1001Caps = true := by
+  simp only [nativeEndpointQ1001Caps,nativePanelChecks_append,List.length_append,nativePanelsQ1001000Caps_length,nativePanelsQ1001016Caps_length,nativePanelsQ1001032Caps_length,nativePanelsQ1001048Caps_length,nativePanelsQ1001064Caps_length,nativePanelsQ1001080Caps_length,nativePanelsQ1001096Caps_length,nativePanelsQ1001112Caps_length,nativePanelsQ1001128Caps_length,nativePanelsQ1001144Caps_length,nativePanelsQ1001160Caps_length,nativePanelsQ1001176Caps_length,nativePanelsQ1001192Caps_length,nativePanelsQ1001208Caps_length,nativePanelsQ1001224Caps_length,nativePanelsQ1001240Caps_length,nativePanelsQ1001256Caps_length,nativePanelsQ1001272Caps_length,nativePanelsQ1001288Caps_length,nativePanelsQ1001304Caps_length,nativePanelsQ1001320Caps_length,nativePanelsQ1001336Caps_length,nativePanelsQ1001352Caps_length,nativePanelsQ1001368Caps_length,nativePanelsQ1001384Caps_length,nativePanelsQ1001400Caps_length,nativePanelsQ1001416Caps_length,nativePanelsQ1001432Caps_length,nativePanelsQ1001448Caps_length,nativePanelsQ1001464Caps_length,nativePanelsQ1001480Caps_length,Nat.zero_add,Nat.reduceAdd,nativePanelsQ1001000_checked,nativePanelsQ1001016_checked,nativePanelsQ1001032_checked,nativePanelsQ1001048_checked,nativePanelsQ1001064_checked,nativePanelsQ1001080_checked,nativePanelsQ1001096_checked,nativePanelsQ1001112_checked,nativePanelsQ1001128_checked,nativePanelsQ1001144_checked,nativePanelsQ1001160_checked,nativePanelsQ1001176_checked,nativePanelsQ1001192_checked,nativePanelsQ1001208_checked,nativePanelsQ1001224_checked,nativePanelsQ1001240_checked,nativePanelsQ1001256_checked,nativePanelsQ1001272_checked,nativePanelsQ1001288_checked,nativePanelsQ1001304_checked,nativePanelsQ1001320_checked,nativePanelsQ1001336_checked,nativePanelsQ1001352_checked,nativePanelsQ1001368_checked,nativePanelsQ1001384_checked,nativePanelsQ1001400_checked,nativePanelsQ1001416_checked,nativePanelsQ1001432_checked,nativePanelsQ1001448_checked,nativePanelsQ1001464_checked,nativePanelsQ1001480_checked,nativePanelsQ1001496_checked,Bool.true_and]
+
+def nativeEndpointQ1001Mean : ℚ := (896174972900282599563054156031361204074759090248284595833931/128000000000000000000000000000000000000000000000000000000000000 : ℚ)
+
+theorem nativeEndpointQ1001Mean_formula : nativeEndpointQ1001Caps.sum/512 = nativeEndpointQ1001Mean := by
+  decide +kernel
+
+theorem nativeEndpointQ1001Integral_bound : (∫ s in (0 : ℝ)..1, nativePanelValue nativeSetupQ1001FieldsR s) ≤ (nativeEndpointQ1001Mean : ℝ) := by
+  have h := nativePanel_integral_caps _ _ _ nativeSetupQ1001Fields_sound nativeSetupQ1001Fields_length nativeEndpointQ1001Caps_length nativeSetupQ1001Panel_monotone nativeEndpointQ1001_checked
+  simpa only [nativeEndpointQ1001Mean_formula] using h
+
+def nativeEndpointQ1001Cap : ℚ := (1095712671923674591833653217481626040963161/15625000000000000000000000000000000000000000 : ℚ)
+
+theorem nativeEndpointQ1001Parts_sound : QInterval.Contains nativeSetupQ1001FrameI nativeSetupQ1001FrameR ∧ QInterval.Contains nativeSetupQ1001B0I nativeSetupQ1001B0R ∧ QInterval.Contains nativeSetupQ1001InvcostI nativeSetupQ1001InvcostR := by
+  exact ⟨nativeSetupQ1001_sound 392, nativeSetupQ1001_sound 348, nativeSetupQ1001_sound 0⟩
+
+theorem nativeEndpointQ1001Numeric : 0 ≤ nativeSetupQ1001FrameI.lo ∧ 0 ≤ (3/50 : ℚ)+nativeSetupQ1001B0I.hi+nativeEndpointQ1001Mean+nativeSetupQ1001InvcostI.hi ∧ nativeSetupQ1001FrameI.hi*((3/50 : ℚ)+nativeSetupQ1001B0I.hi+nativeEndpointQ1001Mean+nativeSetupQ1001InvcostI.hi) ≤ nativeEndpointQ1001Cap := by
+  decide +kernel
+
+theorem nativeEndpointQ1001_bound : nativePanelEndpoint nativeSetupQ1001FieldsR nativeSetupQ1001FrameR nativeSetupQ1001B0R nativeSetupQ1001InvcostR ≤ (nativeEndpointQ1001Cap : ℝ) :=
+  nativePanelEndpoint_bound _ _ _ _ _ _ _ _ _ nativeEndpointQ1001Parts_sound.1 nativeEndpointQ1001Parts_sound.2.1 nativeEndpointQ1001Parts_sound.2.2 nativeEndpointQ1001Numeric.1 nativeEndpointQ1001Integral_bound nativeEndpointQ1001Numeric.2.1 nativeEndpointQ1001Numeric.2.2
+
+theorem nativeEndpointQ1001_carried : nativeEndpointQ1001Cap < (701257/10^7 : ℚ) ∧ (701257/10^7 : ℚ) < nativeQstar := by
+  decide +kernel
+
+end ASDExplicitGamma.Numerics.Native

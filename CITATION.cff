@@ -1,0 +1,53 @@
+cff-version: 1.2.0
+message: "If you use this formalization, please cite it as below, together with the paper."
+title: "ASDExplicitGamma: an explicit threshold for the superdiffusion renormalization induction, formalized in Lean 4"
+type: software
+repository-code: "https://github.com/scottnarmstrong/ASDExplicitGamma"
+abstract: >-
+  A machine-checked Lean 4 and Mathlib formalization of the renormalization
+  induction of Armstrong, Bou-Rabee and Kuusi (arXiv:2601.22142) with an
+  explicit threshold: for the planar q x q Gaussian model and every
+  self-similarity exponent gamma <= 17/50000, the effective diffusivity stays
+  in an explicit corridor at every scale, and the homogenization error
+  satisfies an explicit two-term tail bound and explicit L^p moment bounds for
+  every real p >= 1. These imply the paper's induction hypothesis with the
+  constant E = 2^16. The statements are about the objects of the public
+  Superdiffusion formalization. The library contains no sorry and no custom
+  axiom.
+authors:
+  - family-names: Armstrong
+    given-names: Scott
+  - family-names: Bou-Rabee
+    given-names: Ahmed
+  - family-names: Kuusi
+    given-names: Tuomo
+keywords:
+  - Lean
+  - mathlib
+  - formal verification
+  - superdiffusion
+  - stochastic homogenization
+  - renormalization
+license: Apache-2.0
+references:
+  - type: article
+    title: "Superdiffusion and anomalous regularization in self-similar random incompressible flows"
+    authors:
+      - family-names: Armstrong
+        given-names: Scott
+      - family-names: Bou-Rabee
+        given-names: Ahmed
+      - family-names: Kuusi
+        given-names: Tuomo
+    status: preprint
+    url: "https://arxiv.org/abs/2601.22142"
+    notes: "The paper whose renormalization induction is made explicit here (arXiv:2601.22142v2)."
+  - type: software
+    title: "Superdiffusion: a Lean 4 formalization of superdiffusion and anomalous regularization in self-similar random incompressible flows"
+    authors:
+      - family-names: Armstrong
+        given-names: Scott
+      - family-names: Kuusi
+        given-names: Tuomo
+    repository-code: "https://github.com/scottnarmstrong/Superdiffusion"
+    notes: "The Lean formalization of the paper, on which this repository is built."

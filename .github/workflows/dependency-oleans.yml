@@ -1,0 +1,81 @@
+name: Dependency oleans
+
+# Builds the three source dependencies (CoarseGraining, MarkovProcess and Superdiffusion, at the commits pinned in
+# lake-manifest.json) once, and attaches their build outputs to the `dependency-oleans` release of this repository,
+# as deps-<key>.tar.zst with a SHA-256 file (<key>: scripts/deps_key.py, a hash of lean-toolchain and
+# lake-manifest.json). The build workflow downloads that archive instead of compiling the dependencies, the way Mathlib's
+# oleans come from its cache, and checks with `lake build --no-build` that it is current for the pinned sources.
+#
+# Run it by hand (Actions > Dependency oleans > Run workflow) after changing lean-toolchain or a dependency pin.
+"on":
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deps:
+    name: Build and publish the dependency outputs
+    runs-on: ubuntu-24.04
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Free runner disk space
+        run: |
+          set -Eeuo pipefail
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/local/.ghcup \
+                      /opt/hostedtoolcache/CodeQL /usr/local/share/powershell /usr/share/swift \
+                      /usr/local/share/boost || true
+          sudo docker image prune --all --force > /dev/null || true
+          df -h .
+
+      - name: Add swap and raise the memory-map limit
+        run: |
+          set -Eeuo pipefail
+          sudo swapoff -a || true
+          swapdir=/mnt
+          [ -d "$swapdir" ] || swapdir="${RUNNER_TEMP:-/tmp}"
+          sudo rm -f "$swapdir/lean-swapfile"
+          sudo fallocate -l 16G "$swapdir/lean-swapfile"
+          sudo chmod 600 "$swapdir/lean-swapfile"
+          sudo mkswap "$swapdir/lean-swapfile" > /dev/null
+          sudo swapon "$swapdir/lean-swapfile"
+          sudo sysctl -w vm.max_map_count=1048576
+          free -h
+
+      - name: Set up Lean and fetch the Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          build: false
+          use-mathlib-cache: true
+
+      - name: Build the dependencies
+        run: |
+          lake build @CoarseGraining @MarkovProcess
+          lake build @superdiffusion_formalization
+
+      - name: Pack
+        run: |
+          set -Eeuo pipefail
+          key="$(python3 scripts/deps_key.py)"
+          find .lake/packages/CoarseGraining/.lake/build .lake/packages/MarkovProcess/.lake/build \
+               .lake/packages/superdiffusion_formalization/.lake/build -type f ! -name '*.setup.json' -print0 \
+            | tar --null -T - -cf - | zstd -T0 -19 -q -o "deps-$key.tar.zst"
+          sha256sum "deps-$key.tar.zst" > "deps-$key.tar.zst.sha256"
+          ls -l deps-*
+          echo "KEY=$key" >> "$GITHUB_ENV"
+
+      - name: Attach to the dependency-oleans release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -Eeuo pipefail
+          if ! gh release view dependency-oleans --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            gh release create dependency-oleans --repo "$GITHUB_REPOSITORY" --title "Dependency oleans" \
+              --notes "Prebuilt build outputs of CoarseGraining, MarkovProcess and Superdiffusion at the commits pinned in lake-manifest.json, used by the build workflow. Produced by the Dependency oleans workflow."
+          fi
+          gh release upload dependency-oleans --repo "$GITHUB_REPOSITORY" --clobber \
+            "deps-$KEY.tar.zst" "deps-$KEY.tar.zst.sha256"

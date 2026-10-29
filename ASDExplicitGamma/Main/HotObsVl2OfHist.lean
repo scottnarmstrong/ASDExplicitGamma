@@ -1,0 +1,118 @@
+module
+
+public import ASDExplicitGamma.Main.HotObsVl2
+public import ASDExplicitGamma.Main.HotObsLocalRowsOfHist
+
+/-! Successors of `HotObsVl2` declarations with the history envelope as a parameter `Hfun`. -/
+
+
+
+@[expose] public section
+
+namespace ASDExplicitGamma.Main
+
+attribute [local irreducible] Homogenization.descendantsAtDepth
+
+open Homogenization MeasureTheory Algsuperdiff.Section3
+open ASDExplicitGamma.Gaussian ASDExplicitGamma.Inverse ASDExplicitGamma.Model
+open ASDExplicitGamma.Native ASDExplicitGamma.Scalar ASDExplicitGamma.Triadic
+
+noncomputable section
+
+/-- Successor of `main_hot_obs_vl2_moment` with the history envelope `Hfun`. -/
+theorem main_hot_obs_vl2_moment_ofHist
+    (M : ABKModel 2) (h : ℝ) (hM : PlanarQ3Gaussian M h)
+    (hγ : M.gamma ≤ gammaZero) (N : ℤ)
+    (hpast : ∀ l < N, nativeInductionState M h l)
+    (m : ℤ) (hm : m < N) (hobs : ℕ) (h1 : 1 ≤ hobs) (h40 : hobs ≤ 40)
+    (t : ℝ) (ht : t ∈ Set.Icc (0 : ℝ) 1)
+    (Hfun : ℝ → ℝ)
+    (hHist : ∀ s ∈ Set.Icc (0 : ℝ) 1,
+      (∀ᵐ ω ∂(Cutoff.cutoffSampleLaw M).toMeasure,
+        mainOrdinaryTraceMaxHistory M m (originCube 2 (m - 5)) s ω < ⊤) ∧
+      MemLp (fun ω => (mainOrdinaryTraceMaxHistory M m (originCube 2 (m - 5)) s ω).toReal) 2
+        (Cutoff.cutoffSampleLaw M).toMeasure ∧
+      lpNorm (fun ω => (mainOrdinaryTraceMaxHistory M m (originCube 2 (m - 5)) s ω).toReal) 2
+        (Cutoff.cutoffSampleLaw M).toMeasure ≤ Hfun s)
+    :
+    let μ := (Cutoff.cutoffSampleLaw M).toMeasure
+    let v := (q3ModelAmplitude M h (m + 1) /
+      (Annealed.sigmaBar M m : ℝ)) ^ 2
+    let xi := mainEnvelopeXi v M.gamma mainSourceInversePrefix (theta M) t
+    (∀ U ∈ descendantsAtDepth (originCube 2 (m + hobs)) (hobs + 5),
+      U.scale = m - 5 ∧
+      Integrable (fun ω => mixedBridgeVLocal M m U t ω ^ 2) μ ∧
+      (∀ ω, 0 ≤ mixedBridgeVLocal M m U t ω ^ 2) ∧
+      (∫ ω, mixedBridgeVLocal M m U t ω ^ 2 ∂μ) ≤
+        xi - mainBetaOld * inSourceMeanActual M m 5 t ∧
+      (∫ ω, mixedBridgeVLocal M m U t ω ^ 2 ∂μ) ≤ xi) ∧
+    Integrable (mainHotObsVl2 M m hobs t) μ ∧
+    (∀ ω, 0 ≤ mainHotObsVl2 M m hobs t ω) ∧
+    (∫ ω, mainHotObsVl2 M m hobs t ω ∂μ) ≤
+      xi - mainBetaOld * inSourceMeanActual M m 5 t ∧
+    (∫ ω, mainHotObsVl2 M m hobs t ω ∂μ) ≤ xi := by
+  classical
+  intro μ v xi
+  let Q := originCube 2 (m + hobs)
+  let a := inSourceMeanActual M m 5 t
+  have ha0 : 0 ≤ a :=
+    (main_hot_energy_drop_identity M h hM hγ N hpast m hm t ht).2.2.1.trans
+      (main_hot_energy_drop_identity M h hM hγ N hpast m hm t ht).2.2.2.1
+  have hb0 : 0 ≤ mainBetaOld := by norm_num [mainBetaOld]
+  have hrows (U : TriadicCube 2) (hU : U ∈ descendantsAtDepth Q (hobs + 5)) :
+      Integrable (fun ω => mixedBridgeVLocal M m U t ω ^ 2) μ ∧
+      (∫ ω, mixedBridgeVLocal M m U t ω ^ 2 ∂μ) ≤ xi - mainBetaOld * a := by
+    have hscale := hot_obs_cell_scale m hobs U hU
+    have hroots := hot_obs_cell_mem_bank_roots m hobs h40 U hU
+    have hr := mixed_bridge_local_parent_gap_rows_ofHist (Hfun := Hfun) (hHist := hHist)
+      M h hM hγ N hpast m hm t ht U hscale hroots
+    have hmean0 := (mixed_bridge_local_trace_mean'
+      M h hM hγ N hpast m hm t ht 5 (by omega) U hscale 0).2
+    have hmean : (∫ ω, rawCubeFourLoadTrace M m U t ω ∂μ) = a := by
+      simpa only [mixedDepthTraceAverage,
+        rawWeakTraceSequence_zero_eq_rawCubeFourLoadTrace] using hmean0
+    refine ⟨hr.1, ?_⟩
+    have h2 : (∫ ω, mixedBridgeVLocal M m U t ω ^ 2 ∂μ) ≤
+        xi - mainBetaOld * ∫ ω, rawCubeFourLoadTrace M m U t ω ∂μ := hr.2.1
+    rw [hmean] at h2
+    exact h2
+  have hne : (descendantsAtDepth Q (hobs + 5)).Nonempty := by
+    have h0 := originCube_mem_descendantsAtDepth' 2 (m + hobs) (hobs + 5)
+    exact ⟨_, h0⟩
+  have hcard : (0 : ℝ) < ((descendantsAtDepth Q (hobs + 5)).card : ℝ) := by
+    exact_mod_cast hne.card_pos
+  have hfun : mainHotObsVl2 M m hobs t = fun ω =>
+      ((descendantsAtDepth Q (hobs + 5)).card : ℝ)⁻¹ *
+        ∑ U ∈ descendantsAtDepth Q (hobs + 5), mixedBridgeVLocal M m U t ω ^ 2 := rfl
+  have hint : Integrable (mainHotObsVl2 M m hobs t) μ := by
+    rw [hfun]
+    exact (integrable_finsetSum _ fun U hU => (hrows U hU).1).const_mul _
+  have hnn (ω : Cutoff.CutoffSample 2) : 0 ≤ mainHotObsVl2 M m hobs t ω := by
+    rw [hfun]
+    exact mul_nonneg (inv_nonneg.mpr hcard.le)
+      (Finset.sum_nonneg fun U _ => sq_nonneg _)
+  have hbound : (∫ ω, mainHotObsVl2 M m hobs t ω ∂μ) ≤ xi - mainBetaOld * a := by
+    rw [hfun, integral_const_mul,
+      integral_finsetSum _ fun U hU => (hrows U hU).1]
+    calc
+      ((descendantsAtDepth Q (hobs + 5)).card : ℝ)⁻¹ *
+          ∑ U ∈ descendantsAtDepth Q (hobs + 5),
+            ∫ ω, mixedBridgeVLocal M m U t ω ^ 2 ∂μ ≤
+        ((descendantsAtDepth Q (hobs + 5)).card : ℝ)⁻¹ *
+          ∑ U ∈ descendantsAtDepth Q (hobs + 5), (xi - mainBetaOld * a) :=
+        mul_le_mul_of_nonneg_left
+          (Finset.sum_le_sum fun U hU => (hrows U hU).2)
+          (inv_nonneg.mpr hcard.le)
+      _ = xi - mainBetaOld * a := by
+        simp only [Finset.sum_const, nsmul_eq_mul]
+        field_simp
+  refine ⟨fun U hU => ⟨?_, (hrows U hU).1, fun ω => sq_nonneg _, (hrows U hU).2, ?_⟩,
+    hint, hnn, hbound, ?_⟩
+  · have := hot_obs_cell_scale m hobs U hU
+    simpa using this
+  · nlinarith [mul_nonneg hb0 ha0, (hrows U hU).2]
+  · nlinarith [mul_nonneg hb0 ha0]
+
+end
+end ASDExplicitGamma.Main
+end

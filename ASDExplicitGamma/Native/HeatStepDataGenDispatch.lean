@@ -1,0 +1,634 @@
+module
+
+public import ASDExplicitGamma.Native.HeatStepDataGenN009
+public import ASDExplicitGamma.Native.HeatStepDataGenN010
+public import ASDExplicitGamma.Native.HeatStepDataGenN011
+public import ASDExplicitGamma.Native.HeatStepDataGenN012
+public import ASDExplicitGamma.Native.HeatStepDataGenN013
+public import ASDExplicitGamma.Native.HeatStepDataGenN014
+public import ASDExplicitGamma.Native.HeatStepDataGenN015
+public import ASDExplicitGamma.Native.HeatStepDataGenN016
+public import ASDExplicitGamma.Native.HeatStepDataGenN017
+public import ASDExplicitGamma.Native.HeatStepDataGenN018
+public import ASDExplicitGamma.Native.HeatStepDataGenN019
+public import ASDExplicitGamma.Native.HeatStepDataGenN020
+public import ASDExplicitGamma.Native.HeatStepDataGenN021
+public import ASDExplicitGamma.Native.HeatStepDataGenN022
+public import ASDExplicitGamma.Native.HeatStepDataGenN023
+public import ASDExplicitGamma.Native.HeatStepDataGenN024
+public import ASDExplicitGamma.Native.HeatStepDataGenN025
+public import ASDExplicitGamma.Native.HeatStepDataGenN026
+public import ASDExplicitGamma.Native.HeatStepDataGenN027
+public import ASDExplicitGamma.Native.HeatStepDataGenN028
+public import ASDExplicitGamma.Native.HeatStepDataGenN029
+public import ASDExplicitGamma.Native.HeatStepDataGenN030
+public import ASDExplicitGamma.Native.HeatStepDataGenN031
+public import ASDExplicitGamma.Native.HeatStepDataGenN032
+public import ASDExplicitGamma.Native.HeatStepDataGenN033
+public import ASDExplicitGamma.Native.HeatStepDataGenN034
+public import ASDExplicitGamma.Native.HeatStepDataGenN035
+public import ASDExplicitGamma.Native.HeatStepDataGenN036
+public import ASDExplicitGamma.Native.HeatStepDataGenN037
+public import ASDExplicitGamma.Native.HeatStepDataGenN038
+public import ASDExplicitGamma.Native.HeatStepDataGenN039
+public import ASDExplicitGamma.Native.HeatStepDataGenN040
+public import ASDExplicitGamma.Native.HeatStepDataGenN041
+public import ASDExplicitGamma.Native.HeatStepDataGenN042
+public import ASDExplicitGamma.Native.HeatStepDataGenN043
+public import ASDExplicitGamma.Native.HeatStepDataGenN044
+public import ASDExplicitGamma.Native.HeatStepDataGenN045
+public import ASDExplicitGamma.Native.HeatStepDataGenN046
+public import ASDExplicitGamma.Native.HeatStepDataGenN047
+public import ASDExplicitGamma.Native.HeatStepDataGenN048
+public import ASDExplicitGamma.Native.HeatStepDataGenN049
+public import ASDExplicitGamma.Native.HeatStepDataGenN050
+public import ASDExplicitGamma.Native.HeatStepDataGenN051
+public import ASDExplicitGamma.Native.HeatStepDataGenN052
+public import ASDExplicitGamma.Native.HeatStepDataGenN053
+public import ASDExplicitGamma.Native.HeatStepDataGenN054
+public import ASDExplicitGamma.Native.HeatStepDataGenN055
+public import ASDExplicitGamma.Native.HeatStepDataGenN056
+public import ASDExplicitGamma.Native.HeatStepDataGenN057
+public import ASDExplicitGamma.Native.HeatStepDataGenN058
+public import ASDExplicitGamma.Native.HeatStepDataGenN059
+public import ASDExplicitGamma.Native.HeatStepDataGenN060
+public import ASDExplicitGamma.Native.HeatStepDataGenN061
+public import ASDExplicitGamma.Native.HeatStepDataGenN062
+public import ASDExplicitGamma.Native.HeatStepDataGenN063
+public import ASDExplicitGamma.Native.HeatStepDataGenN064
+public import ASDExplicitGamma.Native.HeatStepDataGenN065
+public import ASDExplicitGamma.Native.HeatStepDataGenN066
+public import ASDExplicitGamma.Native.HeatStepDataGenN067
+public import ASDExplicitGamma.Native.HeatStepDataGenN068
+public import ASDExplicitGamma.Native.HeatStepDataGenN069
+public import ASDExplicitGamma.Native.HeatStepDataGenN070
+public import ASDExplicitGamma.Native.HeatStepDataGenN071
+public import ASDExplicitGamma.Native.HeatStepDataGenN072
+public import ASDExplicitGamma.Native.HeatStepDataGenN073
+public import ASDExplicitGamma.Native.HeatStepDataGenN074
+public import ASDExplicitGamma.Native.HeatStepDataGenN075
+public import ASDExplicitGamma.Native.HeatStepDataGenN076
+public import ASDExplicitGamma.Native.HeatStepDataGenN077
+public import ASDExplicitGamma.Native.HeatStepDataGenN078
+public import ASDExplicitGamma.Native.HeatStepDataGenN079
+public import ASDExplicitGamma.Native.HeatStepDataGenN080
+public import ASDExplicitGamma.Native.HeatStepDataGenN081
+public import ASDExplicitGamma.Native.HeatStepDataGenN082
+public import ASDExplicitGamma.Native.HeatStepDataGenN083
+public import ASDExplicitGamma.Native.HeatStepDataGenN084
+public import ASDExplicitGamma.Native.HeatStepDataGenN085
+public import ASDExplicitGamma.Native.HeatStepDataGenN086
+public import ASDExplicitGamma.Native.HeatStepDataGenN087
+public import ASDExplicitGamma.Native.HeatStepDataGenN088
+public import ASDExplicitGamma.Native.HeatStepDataGenN089
+public import ASDExplicitGamma.Native.HeatStepDataGenN090
+public import ASDExplicitGamma.Native.HeatStepDataGenN091
+public import ASDExplicitGamma.Native.HeatStepDataGenN092
+public import ASDExplicitGamma.Native.HeatStepDataGenN093
+public import ASDExplicitGamma.Native.HeatStepDataGenN094
+public import ASDExplicitGamma.Native.HeatStepDataGenN095
+public import ASDExplicitGamma.Native.HeatStepDataGenN096
+public import ASDExplicitGamma.Native.HeatStepDataGenN097
+public import ASDExplicitGamma.Native.HeatStepDataGenN098
+public import ASDExplicitGamma.Native.HeatStepDataGenN099
+public import ASDExplicitGamma.Native.HeatStepDataGenN100
+public import ASDExplicitGamma.Native.HeatStepDataGenN101
+public import ASDExplicitGamma.Native.HeatStepDataGenN102
+public import ASDExplicitGamma.Native.HeatStepDataGenN103
+public import ASDExplicitGamma.Native.HeatStepDataGenN104
+public import ASDExplicitGamma.Native.HeatStepDataGenN105
+public import ASDExplicitGamma.Native.HeatStepDataGenN106
+public import ASDExplicitGamma.Native.HeatStepDataGenN107
+public import ASDExplicitGamma.Native.HeatStepDataGenN108
+public import ASDExplicitGamma.Native.HeatStepDataGenN109
+public import ASDExplicitGamma.Native.HeatStepDataGenN110
+public import ASDExplicitGamma.Native.HeatStepDataGenN111
+public import ASDExplicitGamma.Native.HeatStepDataGenN112
+public import ASDExplicitGamma.Native.HeatStepDataGenN113
+public import ASDExplicitGamma.Native.HeatStepDataGenN114
+public import ASDExplicitGamma.Native.HeatStepDataGenN115
+public import ASDExplicitGamma.Native.HeatStepDataGenN116
+public import ASDExplicitGamma.Native.HeatStepDataGenN117
+public import ASDExplicitGamma.Native.HeatStepDataGenN118
+public import ASDExplicitGamma.Native.HeatStepDataGenN119
+public import ASDExplicitGamma.Native.HeatStepDataGenN120
+public import ASDExplicitGamma.Native.HeatStepDataGenN121
+public import ASDExplicitGamma.Native.HeatStepDataGenN122
+public import ASDExplicitGamma.Native.HeatStepDataGenN123
+public import ASDExplicitGamma.Native.HeatStepDataGenN124
+public import ASDExplicitGamma.Native.HeatStepDataGenN125
+public import ASDExplicitGamma.Native.HeatStepDataGenN126
+public import ASDExplicitGamma.Native.HeatStepDataGenN127
+public import ASDExplicitGamma.Native.HeatStepDataGenN128
+public import ASDExplicitGamma.Native.HeatStepDataGenN129
+public import ASDExplicitGamma.Native.HeatStepDataGenN130
+public import ASDExplicitGamma.Native.HeatStepDataGenN131
+public import ASDExplicitGamma.Native.HeatStepDataGenN132
+public import ASDExplicitGamma.Native.HeatStepDataGenN133
+public import ASDExplicitGamma.Native.HeatStepDataGenN134
+public import ASDExplicitGamma.Native.HeatStepDataGenN135
+public import ASDExplicitGamma.Native.HeatStepDataGenN136
+public import ASDExplicitGamma.Native.HeatStepDataGenN137
+public import ASDExplicitGamma.Native.HeatStepDataGenN138
+public import ASDExplicitGamma.Native.HeatStepDataGenN139
+public import ASDExplicitGamma.Native.HeatStepDataGenN140
+public import ASDExplicitGamma.Native.HeatStepDataGenN141
+public import ASDExplicitGamma.Native.HeatStepDataGenN142
+public import ASDExplicitGamma.Native.HeatStepDataGenN143
+public import ASDExplicitGamma.Native.HeatStepDataGenN144
+public import ASDExplicitGamma.Native.HeatStepDataGenN145
+public import ASDExplicitGamma.Native.HeatStepDataGenN146
+public import ASDExplicitGamma.Native.HeatStepDataGenN147
+public import ASDExplicitGamma.Native.HeatStepDataGenN148
+public import ASDExplicitGamma.Native.HeatStepDataGenN149
+public import ASDExplicitGamma.Native.HeatStepDataGenN150
+public import ASDExplicitGamma.Native.HeatStepDataGenN151
+public import ASDExplicitGamma.Native.HeatStepDataGenN152
+public import ASDExplicitGamma.Native.HeatStepDataGenN153
+public import ASDExplicitGamma.Native.HeatStepDataGenN154
+public import ASDExplicitGamma.Native.HeatStepDataGenN155
+public import ASDExplicitGamma.Native.HeatStepDataGenN156
+public import ASDExplicitGamma.Native.HeatStepDataGenN157
+public import ASDExplicitGamma.Native.HeatStepDataGenN158
+public import ASDExplicitGamma.Native.HeatStepDataGenN159
+public import ASDExplicitGamma.Native.HeatStepDataGenN160
+
+/-! Dispatchers of the per-`ns` heat-step numerics for `9 ≤ ns ≤ 160`. -/
+
+@[expose] public section
+
+namespace ASDExplicitGamma.Native
+
+open ASDExplicitGamma.Numerics.Native
+
+theorem nativeHeatStepPassNum_Gen (ns : ℕ) (h9 : 9 ≤ ns) (h160 : ns ≤ 160) :
+    NativeHeatStepPassNum ns := by
+  interval_cases ns
+  · exact nativeHeatStepPassNum_009_Gen
+  · exact nativeHeatStepPassNum_010_Gen
+  · exact nativeHeatStepPassNum_011_Gen
+  · exact nativeHeatStepPassNum_012_Gen
+  · exact nativeHeatStepPassNum_013_Gen
+  · exact nativeHeatStepPassNum_014_Gen
+  · exact nativeHeatStepPassNum_015_Gen
+  · exact nativeHeatStepPassNum_016_Gen
+  · exact nativeHeatStepPassNum_017_Gen
+  · exact nativeHeatStepPassNum_018_Gen
+  · exact nativeHeatStepPassNum_019_Gen
+  · exact nativeHeatStepPassNum_020_Gen
+  · exact nativeHeatStepPassNum_021_Gen
+  · exact nativeHeatStepPassNum_022_Gen
+  · exact nativeHeatStepPassNum_023_Gen
+  · exact nativeHeatStepPassNum_024_Gen
+  · exact nativeHeatStepPassNum_025_Gen
+  · exact nativeHeatStepPassNum_026_Gen
+  · exact nativeHeatStepPassNum_027_Gen
+  · exact nativeHeatStepPassNum_028_Gen
+  · exact nativeHeatStepPassNum_029_Gen
+  · exact nativeHeatStepPassNum_030_Gen
+  · exact nativeHeatStepPassNum_031_Gen
+  · exact nativeHeatStepPassNum_032_Gen
+  · exact nativeHeatStepPassNum_033_Gen
+  · exact nativeHeatStepPassNum_034_Gen
+  · exact nativeHeatStepPassNum_035_Gen
+  · exact nativeHeatStepPassNum_036_Gen
+  · exact nativeHeatStepPassNum_037_Gen
+  · exact nativeHeatStepPassNum_038_Gen
+  · exact nativeHeatStepPassNum_039_Gen
+  · exact nativeHeatStepPassNum_040_Gen
+  · exact nativeHeatStepPassNum_041_Gen
+  · exact nativeHeatStepPassNum_042_Gen
+  · exact nativeHeatStepPassNum_043_Gen
+  · exact nativeHeatStepPassNum_044_Gen
+  · exact nativeHeatStepPassNum_045_Gen
+  · exact nativeHeatStepPassNum_046_Gen
+  · exact nativeHeatStepPassNum_047_Gen
+  · exact nativeHeatStepPassNum_048_Gen
+  · exact nativeHeatStepPassNum_049_Gen
+  · exact nativeHeatStepPassNum_050_Gen
+  · exact nativeHeatStepPassNum_051_Gen
+  · exact nativeHeatStepPassNum_052_Gen
+  · exact nativeHeatStepPassNum_053_Gen
+  · exact nativeHeatStepPassNum_054_Gen
+  · exact nativeHeatStepPassNum_055_Gen
+  · exact nativeHeatStepPassNum_056_Gen
+  · exact nativeHeatStepPassNum_057_Gen
+  · exact nativeHeatStepPassNum_058_Gen
+  · exact nativeHeatStepPassNum_059_Gen
+  · exact nativeHeatStepPassNum_060_Gen
+  · exact nativeHeatStepPassNum_061_Gen
+  · exact nativeHeatStepPassNum_062_Gen
+  · exact nativeHeatStepPassNum_063_Gen
+  · exact nativeHeatStepPassNum_064_Gen
+  · exact nativeHeatStepPassNum_065_Gen
+  · exact nativeHeatStepPassNum_066_Gen
+  · exact nativeHeatStepPassNum_067_Gen
+  · exact nativeHeatStepPassNum_068_Gen
+  · exact nativeHeatStepPassNum_069_Gen
+  · exact nativeHeatStepPassNum_070_Gen
+  · exact nativeHeatStepPassNum_071_Gen
+  · exact nativeHeatStepPassNum_072_Gen
+  · exact nativeHeatStepPassNum_073_Gen
+  · exact nativeHeatStepPassNum_074_Gen
+  · exact nativeHeatStepPassNum_075_Gen
+  · exact nativeHeatStepPassNum_076_Gen
+  · exact nativeHeatStepPassNum_077_Gen
+  · exact nativeHeatStepPassNum_078_Gen
+  · exact nativeHeatStepPassNum_079_Gen
+  · exact nativeHeatStepPassNum_080_Gen
+  · exact nativeHeatStepPassNum_081_Gen
+  · exact nativeHeatStepPassNum_082_Gen
+  · exact nativeHeatStepPassNum_083_Gen
+  · exact nativeHeatStepPassNum_084_Gen
+  · exact nativeHeatStepPassNum_085_Gen
+  · exact nativeHeatStepPassNum_086_Gen
+  · exact nativeHeatStepPassNum_087_Gen
+  · exact nativeHeatStepPassNum_088_Gen
+  · exact nativeHeatStepPassNum_089_Gen
+  · exact nativeHeatStepPassNum_090_Gen
+  · exact nativeHeatStepPassNum_091_Gen
+  · exact nativeHeatStepPassNum_092_Gen
+  · exact nativeHeatStepPassNum_093_Gen
+  · exact nativeHeatStepPassNum_094_Gen
+  · exact nativeHeatStepPassNum_095_Gen
+  · exact nativeHeatStepPassNum_096_Gen
+  · exact nativeHeatStepPassNum_097_Gen
+  · exact nativeHeatStepPassNum_098_Gen
+  · exact nativeHeatStepPassNum_099_Gen
+  · exact nativeHeatStepPassNum_100_Gen
+  · exact nativeHeatStepPassNum_101_Gen
+  · exact nativeHeatStepPassNum_102_Gen
+  · exact nativeHeatStepPassNum_103_Gen
+  · exact nativeHeatStepPassNum_104_Gen
+  · exact nativeHeatStepPassNum_105_Gen
+  · exact nativeHeatStepPassNum_106_Gen
+  · exact nativeHeatStepPassNum_107_Gen
+  · exact nativeHeatStepPassNum_108_Gen
+  · exact nativeHeatStepPassNum_109_Gen
+  · exact nativeHeatStepPassNum_110_Gen
+  · exact nativeHeatStepPassNum_111_Gen
+  · exact nativeHeatStepPassNum_112_Gen
+  · exact nativeHeatStepPassNum_113_Gen
+  · exact nativeHeatStepPassNum_114_Gen
+  · exact nativeHeatStepPassNum_115_Gen
+  · exact nativeHeatStepPassNum_116_Gen
+  · exact nativeHeatStepPassNum_117_Gen
+  · exact nativeHeatStepPassNum_118_Gen
+  · exact nativeHeatStepPassNum_119_Gen
+  · exact nativeHeatStepPassNum_120_Gen
+  · exact nativeHeatStepPassNum_121_Gen
+  · exact nativeHeatStepPassNum_122_Gen
+  · exact nativeHeatStepPassNum_123_Gen
+  · exact nativeHeatStepPassNum_124_Gen
+  · exact nativeHeatStepPassNum_125_Gen
+  · exact nativeHeatStepPassNum_126_Gen
+  · exact nativeHeatStepPassNum_127_Gen
+  · exact nativeHeatStepPassNum_128_Gen
+  · exact nativeHeatStepPassNum_129_Gen
+  · exact nativeHeatStepPassNum_130_Gen
+  · exact nativeHeatStepPassNum_131_Gen
+  · exact nativeHeatStepPassNum_132_Gen
+  · exact nativeHeatStepPassNum_133_Gen
+  · exact nativeHeatStepPassNum_134_Gen
+  · exact nativeHeatStepPassNum_135_Gen
+  · exact nativeHeatStepPassNum_136_Gen
+  · exact nativeHeatStepPassNum_137_Gen
+  · exact nativeHeatStepPassNum_138_Gen
+  · exact nativeHeatStepPassNum_139_Gen
+  · exact nativeHeatStepPassNum_140_Gen
+  · exact nativeHeatStepPassNum_141_Gen
+  · exact nativeHeatStepPassNum_142_Gen
+  · exact nativeHeatStepPassNum_143_Gen
+  · exact nativeHeatStepPassNum_144_Gen
+  · exact nativeHeatStepPassNum_145_Gen
+  · exact nativeHeatStepPassNum_146_Gen
+  · exact nativeHeatStepPassNum_147_Gen
+  · exact nativeHeatStepPassNum_148_Gen
+  · exact nativeHeatStepPassNum_149_Gen
+  · exact nativeHeatStepPassNum_150_Gen
+  · exact nativeHeatStepPassNum_151_Gen
+  · exact nativeHeatStepPassNum_152_Gen
+  · exact nativeHeatStepPassNum_153_Gen
+  · exact nativeHeatStepPassNum_154_Gen
+  · exact nativeHeatStepPassNum_155_Gen
+  · exact nativeHeatStepPassNum_156_Gen
+  · exact nativeHeatStepPassNum_157_Gen
+  · exact nativeHeatStepPassNum_158_Gen
+  · exact nativeHeatStepPassNum_159_Gen
+  · exact nativeHeatStepPassNum_160_Gen
+
+theorem nativeHeatStepFrameNum_Gen (ns : ℕ) (h9 : 9 ≤ ns) (h160 : ns ≤ 160) :
+    NativeHeatStepFrameNum ns := by
+  interval_cases ns
+  · exact nativeHeatStepFrameNum_009_Gen
+  · exact nativeHeatStepFrameNum_010_Gen
+  · exact nativeHeatStepFrameNum_011_Gen
+  · exact nativeHeatStepFrameNum_012_Gen
+  · exact nativeHeatStepFrameNum_013_Gen
+  · exact nativeHeatStepFrameNum_014_Gen
+  · exact nativeHeatStepFrameNum_015_Gen
+  · exact nativeHeatStepFrameNum_016_Gen
+  · exact nativeHeatStepFrameNum_017_Gen
+  · exact nativeHeatStepFrameNum_018_Gen
+  · exact nativeHeatStepFrameNum_019_Gen
+  · exact nativeHeatStepFrameNum_020_Gen
+  · exact nativeHeatStepFrameNum_021_Gen
+  · exact nativeHeatStepFrameNum_022_Gen
+  · exact nativeHeatStepFrameNum_023_Gen
+  · exact nativeHeatStepFrameNum_024_Gen
+  · exact nativeHeatStepFrameNum_025_Gen
+  · exact nativeHeatStepFrameNum_026_Gen
+  · exact nativeHeatStepFrameNum_027_Gen
+  · exact nativeHeatStepFrameNum_028_Gen
+  · exact nativeHeatStepFrameNum_029_Gen
+  · exact nativeHeatStepFrameNum_030_Gen
+  · exact nativeHeatStepFrameNum_031_Gen
+  · exact nativeHeatStepFrameNum_032_Gen
+  · exact nativeHeatStepFrameNum_033_Gen
+  · exact nativeHeatStepFrameNum_034_Gen
+  · exact nativeHeatStepFrameNum_035_Gen
+  · exact nativeHeatStepFrameNum_036_Gen
+  · exact nativeHeatStepFrameNum_037_Gen
+  · exact nativeHeatStepFrameNum_038_Gen
+  · exact nativeHeatStepFrameNum_039_Gen
+  · exact nativeHeatStepFrameNum_040_Gen
+  · exact nativeHeatStepFrameNum_041_Gen
+  · exact nativeHeatStepFrameNum_042_Gen
+  · exact nativeHeatStepFrameNum_043_Gen
+  · exact nativeHeatStepFrameNum_044_Gen
+  · exact nativeHeatStepFrameNum_045_Gen
+  · exact nativeHeatStepFrameNum_046_Gen
+  · exact nativeHeatStepFrameNum_047_Gen
+  · exact nativeHeatStepFrameNum_048_Gen
+  · exact nativeHeatStepFrameNum_049_Gen
+  · exact nativeHeatStepFrameNum_050_Gen
+  · exact nativeHeatStepFrameNum_051_Gen
+  · exact nativeHeatStepFrameNum_052_Gen
+  · exact nativeHeatStepFrameNum_053_Gen
+  · exact nativeHeatStepFrameNum_054_Gen
+  · exact nativeHeatStepFrameNum_055_Gen
+  · exact nativeHeatStepFrameNum_056_Gen
+  · exact nativeHeatStepFrameNum_057_Gen
+  · exact nativeHeatStepFrameNum_058_Gen
+  · exact nativeHeatStepFrameNum_059_Gen
+  · exact nativeHeatStepFrameNum_060_Gen
+  · exact nativeHeatStepFrameNum_061_Gen
+  · exact nativeHeatStepFrameNum_062_Gen
+  · exact nativeHeatStepFrameNum_063_Gen
+  · exact nativeHeatStepFrameNum_064_Gen
+  · exact nativeHeatStepFrameNum_065_Gen
+  · exact nativeHeatStepFrameNum_066_Gen
+  · exact nativeHeatStepFrameNum_067_Gen
+  · exact nativeHeatStepFrameNum_068_Gen
+  · exact nativeHeatStepFrameNum_069_Gen
+  · exact nativeHeatStepFrameNum_070_Gen
+  · exact nativeHeatStepFrameNum_071_Gen
+  · exact nativeHeatStepFrameNum_072_Gen
+  · exact nativeHeatStepFrameNum_073_Gen
+  · exact nativeHeatStepFrameNum_074_Gen
+  · exact nativeHeatStepFrameNum_075_Gen
+  · exact nativeHeatStepFrameNum_076_Gen
+  · exact nativeHeatStepFrameNum_077_Gen
+  · exact nativeHeatStepFrameNum_078_Gen
+  · exact nativeHeatStepFrameNum_079_Gen
+  · exact nativeHeatStepFrameNum_080_Gen
+  · exact nativeHeatStepFrameNum_081_Gen
+  · exact nativeHeatStepFrameNum_082_Gen
+  · exact nativeHeatStepFrameNum_083_Gen
+  · exact nativeHeatStepFrameNum_084_Gen
+  · exact nativeHeatStepFrameNum_085_Gen
+  · exact nativeHeatStepFrameNum_086_Gen
+  · exact nativeHeatStepFrameNum_087_Gen
+  · exact nativeHeatStepFrameNum_088_Gen
+  · exact nativeHeatStepFrameNum_089_Gen
+  · exact nativeHeatStepFrameNum_090_Gen
+  · exact nativeHeatStepFrameNum_091_Gen
+  · exact nativeHeatStepFrameNum_092_Gen
+  · exact nativeHeatStepFrameNum_093_Gen
+  · exact nativeHeatStepFrameNum_094_Gen
+  · exact nativeHeatStepFrameNum_095_Gen
+  · exact nativeHeatStepFrameNum_096_Gen
+  · exact nativeHeatStepFrameNum_097_Gen
+  · exact nativeHeatStepFrameNum_098_Gen
+  · exact nativeHeatStepFrameNum_099_Gen
+  · exact nativeHeatStepFrameNum_100_Gen
+  · exact nativeHeatStepFrameNum_101_Gen
+  · exact nativeHeatStepFrameNum_102_Gen
+  · exact nativeHeatStepFrameNum_103_Gen
+  · exact nativeHeatStepFrameNum_104_Gen
+  · exact nativeHeatStepFrameNum_105_Gen
+  · exact nativeHeatStepFrameNum_106_Gen
+  · exact nativeHeatStepFrameNum_107_Gen
+  · exact nativeHeatStepFrameNum_108_Gen
+  · exact nativeHeatStepFrameNum_109_Gen
+  · exact nativeHeatStepFrameNum_110_Gen
+  · exact nativeHeatStepFrameNum_111_Gen
+  · exact nativeHeatStepFrameNum_112_Gen
+  · exact nativeHeatStepFrameNum_113_Gen
+  · exact nativeHeatStepFrameNum_114_Gen
+  · exact nativeHeatStepFrameNum_115_Gen
+  · exact nativeHeatStepFrameNum_116_Gen
+  · exact nativeHeatStepFrameNum_117_Gen
+  · exact nativeHeatStepFrameNum_118_Gen
+  · exact nativeHeatStepFrameNum_119_Gen
+  · exact nativeHeatStepFrameNum_120_Gen
+  · exact nativeHeatStepFrameNum_121_Gen
+  · exact nativeHeatStepFrameNum_122_Gen
+  · exact nativeHeatStepFrameNum_123_Gen
+  · exact nativeHeatStepFrameNum_124_Gen
+  · exact nativeHeatStepFrameNum_125_Gen
+  · exact nativeHeatStepFrameNum_126_Gen
+  · exact nativeHeatStepFrameNum_127_Gen
+  · exact nativeHeatStepFrameNum_128_Gen
+  · exact nativeHeatStepFrameNum_129_Gen
+  · exact nativeHeatStepFrameNum_130_Gen
+  · exact nativeHeatStepFrameNum_131_Gen
+  · exact nativeHeatStepFrameNum_132_Gen
+  · exact nativeHeatStepFrameNum_133_Gen
+  · exact nativeHeatStepFrameNum_134_Gen
+  · exact nativeHeatStepFrameNum_135_Gen
+  · exact nativeHeatStepFrameNum_136_Gen
+  · exact nativeHeatStepFrameNum_137_Gen
+  · exact nativeHeatStepFrameNum_138_Gen
+  · exact nativeHeatStepFrameNum_139_Gen
+  · exact nativeHeatStepFrameNum_140_Gen
+  · exact nativeHeatStepFrameNum_141_Gen
+  · exact nativeHeatStepFrameNum_142_Gen
+  · exact nativeHeatStepFrameNum_143_Gen
+  · exact nativeHeatStepFrameNum_144_Gen
+  · exact nativeHeatStepFrameNum_145_Gen
+  · exact nativeHeatStepFrameNum_146_Gen
+  · exact nativeHeatStepFrameNum_147_Gen
+  · exact nativeHeatStepFrameNum_148_Gen
+  · exact nativeHeatStepFrameNum_149_Gen
+  · exact nativeHeatStepFrameNum_150_Gen
+  · exact nativeHeatStepFrameNum_151_Gen
+  · exact nativeHeatStepFrameNum_152_Gen
+  · exact nativeHeatStepFrameNum_153_Gen
+  · exact nativeHeatStepFrameNum_154_Gen
+  · exact nativeHeatStepFrameNum_155_Gen
+  · exact nativeHeatStepFrameNum_156_Gen
+  · exact nativeHeatStepFrameNum_157_Gen
+  · exact nativeHeatStepFrameNum_158_Gen
+  · exact nativeHeatStepFrameNum_159_Gen
+  · exact nativeHeatStepFrameNum_160_Gen
+
+theorem nativeHeatStepIndivNum_Gen (ns : ℕ) (h9 : 9 ≤ ns) (h160 : ns ≤ 160) :
+    NativeHeatStepIndivNum ns h160 := by
+  interval_cases ns
+  · exact nativeHeatStepIndivNum_009_Gen
+  · exact nativeHeatStepIndivNum_010_Gen
+  · exact nativeHeatStepIndivNum_011_Gen
+  · exact nativeHeatStepIndivNum_012_Gen
+  · exact nativeHeatStepIndivNum_013_Gen
+  · exact nativeHeatStepIndivNum_014_Gen
+  · exact nativeHeatStepIndivNum_015_Gen
+  · exact nativeHeatStepIndivNum_016_Gen
+  · exact nativeHeatStepIndivNum_017_Gen
+  · exact nativeHeatStepIndivNum_018_Gen
+  · exact nativeHeatStepIndivNum_019_Gen
+  · exact nativeHeatStepIndivNum_020_Gen
+  · exact nativeHeatStepIndivNum_021_Gen
+  · exact nativeHeatStepIndivNum_022_Gen
+  · exact nativeHeatStepIndivNum_023_Gen
+  · exact nativeHeatStepIndivNum_024_Gen
+  · exact nativeHeatStepIndivNum_025_Gen
+  · exact nativeHeatStepIndivNum_026_Gen
+  · exact nativeHeatStepIndivNum_027_Gen
+  · exact nativeHeatStepIndivNum_028_Gen
+  · exact nativeHeatStepIndivNum_029_Gen
+  · exact nativeHeatStepIndivNum_030_Gen
+  · exact nativeHeatStepIndivNum_031_Gen
+  · exact nativeHeatStepIndivNum_032_Gen
+  · exact nativeHeatStepIndivNum_033_Gen
+  · exact nativeHeatStepIndivNum_034_Gen
+  · exact nativeHeatStepIndivNum_035_Gen
+  · exact nativeHeatStepIndivNum_036_Gen
+  · exact nativeHeatStepIndivNum_037_Gen
+  · exact nativeHeatStepIndivNum_038_Gen
+  · exact nativeHeatStepIndivNum_039_Gen
+  · exact nativeHeatStepIndivNum_040_Gen
+  · exact nativeHeatStepIndivNum_041_Gen
+  · exact nativeHeatStepIndivNum_042_Gen
+  · exact nativeHeatStepIndivNum_043_Gen
+  · exact nativeHeatStepIndivNum_044_Gen
+  · exact nativeHeatStepIndivNum_045_Gen
+  · exact nativeHeatStepIndivNum_046_Gen
+  · exact nativeHeatStepIndivNum_047_Gen
+  · exact nativeHeatStepIndivNum_048_Gen
+  · exact nativeHeatStepIndivNum_049_Gen
+  · exact nativeHeatStepIndivNum_050_Gen
+  · exact nativeHeatStepIndivNum_051_Gen
+  · exact nativeHeatStepIndivNum_052_Gen
+  · exact nativeHeatStepIndivNum_053_Gen
+  · exact nativeHeatStepIndivNum_054_Gen
+  · exact nativeHeatStepIndivNum_055_Gen
+  · exact nativeHeatStepIndivNum_056_Gen
+  · exact nativeHeatStepIndivNum_057_Gen
+  · exact nativeHeatStepIndivNum_058_Gen
+  · exact nativeHeatStepIndivNum_059_Gen
+  · exact nativeHeatStepIndivNum_060_Gen
+  · exact nativeHeatStepIndivNum_061_Gen
+  · exact nativeHeatStepIndivNum_062_Gen
+  · exact nativeHeatStepIndivNum_063_Gen
+  · exact nativeHeatStepIndivNum_064_Gen
+  · exact nativeHeatStepIndivNum_065_Gen
+  · exact nativeHeatStepIndivNum_066_Gen
+  · exact nativeHeatStepIndivNum_067_Gen
+  · exact nativeHeatStepIndivNum_068_Gen
+  · exact nativeHeatStepIndivNum_069_Gen
+  · exact nativeHeatStepIndivNum_070_Gen
+  · exact nativeHeatStepIndivNum_071_Gen
+  · exact nativeHeatStepIndivNum_072_Gen
+  · exact nativeHeatStepIndivNum_073_Gen
+  · exact nativeHeatStepIndivNum_074_Gen
+  · exact nativeHeatStepIndivNum_075_Gen
+  · exact nativeHeatStepIndivNum_076_Gen
+  · exact nativeHeatStepIndivNum_077_Gen
+  · exact nativeHeatStepIndivNum_078_Gen
+  · exact nativeHeatStepIndivNum_079_Gen
+  · exact nativeHeatStepIndivNum_080_Gen
+  · exact nativeHeatStepIndivNum_081_Gen
+  · exact nativeHeatStepIndivNum_082_Gen
+  · exact nativeHeatStepIndivNum_083_Gen
+  · exact nativeHeatStepIndivNum_084_Gen
+  · exact nativeHeatStepIndivNum_085_Gen
+  · exact nativeHeatStepIndivNum_086_Gen
+  · exact nativeHeatStepIndivNum_087_Gen
+  · exact nativeHeatStepIndivNum_088_Gen
+  · exact nativeHeatStepIndivNum_089_Gen
+  · exact nativeHeatStepIndivNum_090_Gen
+  · exact nativeHeatStepIndivNum_091_Gen
+  · exact nativeHeatStepIndivNum_092_Gen
+  · exact nativeHeatStepIndivNum_093_Gen
+  · exact nativeHeatStepIndivNum_094_Gen
+  · exact nativeHeatStepIndivNum_095_Gen
+  · exact nativeHeatStepIndivNum_096_Gen
+  · exact nativeHeatStepIndivNum_097_Gen
+  · exact nativeHeatStepIndivNum_098_Gen
+  · exact nativeHeatStepIndivNum_099_Gen
+  · exact nativeHeatStepIndivNum_100_Gen
+  · exact nativeHeatStepIndivNum_101_Gen
+  · exact nativeHeatStepIndivNum_102_Gen
+  · exact nativeHeatStepIndivNum_103_Gen
+  · exact nativeHeatStepIndivNum_104_Gen
+  · exact nativeHeatStepIndivNum_105_Gen
+  · exact nativeHeatStepIndivNum_106_Gen
+  · exact nativeHeatStepIndivNum_107_Gen
+  · exact nativeHeatStepIndivNum_108_Gen
+  · exact nativeHeatStepIndivNum_109_Gen
+  · exact nativeHeatStepIndivNum_110_Gen
+  · exact nativeHeatStepIndivNum_111_Gen
+  · exact nativeHeatStepIndivNum_112_Gen
+  · exact nativeHeatStepIndivNum_113_Gen
+  · exact nativeHeatStepIndivNum_114_Gen
+  · exact nativeHeatStepIndivNum_115_Gen
+  · exact nativeHeatStepIndivNum_116_Gen
+  · exact nativeHeatStepIndivNum_117_Gen
+  · exact nativeHeatStepIndivNum_118_Gen
+  · exact nativeHeatStepIndivNum_119_Gen
+  · exact nativeHeatStepIndivNum_120_Gen
+  · exact nativeHeatStepIndivNum_121_Gen
+  · exact nativeHeatStepIndivNum_122_Gen
+  · exact nativeHeatStepIndivNum_123_Gen
+  · exact nativeHeatStepIndivNum_124_Gen
+  · exact nativeHeatStepIndivNum_125_Gen
+  · exact nativeHeatStepIndivNum_126_Gen
+  · exact nativeHeatStepIndivNum_127_Gen
+  · exact nativeHeatStepIndivNum_128_Gen
+  · exact nativeHeatStepIndivNum_129_Gen
+  · exact nativeHeatStepIndivNum_130_Gen
+  · exact nativeHeatStepIndivNum_131_Gen
+  · exact nativeHeatStepIndivNum_132_Gen
+  · exact nativeHeatStepIndivNum_133_Gen
+  · exact nativeHeatStepIndivNum_134_Gen
+  · exact nativeHeatStepIndivNum_135_Gen
+  · exact nativeHeatStepIndivNum_136_Gen
+  · exact nativeHeatStepIndivNum_137_Gen
+  · exact nativeHeatStepIndivNum_138_Gen
+  · exact nativeHeatStepIndivNum_139_Gen
+  · exact nativeHeatStepIndivNum_140_Gen
+  · exact nativeHeatStepIndivNum_141_Gen
+  · exact nativeHeatStepIndivNum_142_Gen
+  · exact nativeHeatStepIndivNum_143_Gen
+  · exact nativeHeatStepIndivNum_144_Gen
+  · exact nativeHeatStepIndivNum_145_Gen
+  · exact nativeHeatStepIndivNum_146_Gen
+  · exact nativeHeatStepIndivNum_147_Gen
+  · exact nativeHeatStepIndivNum_148_Gen
+  · exact nativeHeatStepIndivNum_149_Gen
+  · exact nativeHeatStepIndivNum_150_Gen
+  · exact nativeHeatStepIndivNum_151_Gen
+  · exact nativeHeatStepIndivNum_152_Gen
+  · exact nativeHeatStepIndivNum_153_Gen
+  · exact nativeHeatStepIndivNum_154_Gen
+  · exact nativeHeatStepIndivNum_155_Gen
+  · exact nativeHeatStepIndivNum_156_Gen
+  · exact nativeHeatStepIndivNum_157_Gen
+  · exact nativeHeatStepIndivNum_158_Gen
+  · exact nativeHeatStepIndivNum_159_Gen
+  · exact nativeHeatStepIndivNum_160_Gen
+
+end ASDExplicitGamma.Native
+
+end
